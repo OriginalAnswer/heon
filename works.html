@@ -5,15 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HEON</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        a{
+            color:#fff;
+        }
+        body{
+            color:#fff;
+            background-image: url(./bg_img.png);
+            background-size: cover;
+            place-content: center;
+        }
+        /*  */
+        header{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            background-color: #00000041;
+
+        }
+        .header-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 15px;
+            font-size: 1.5rem;
+        }
+        /*  */
+        
+        #nav{
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translateX(100%);
+            z-index: 110;
+            
+            background: #000;
+            padding: 20px 15px;
+            
+            text-align: center;
+            transition: transform .2s ease-in-out;
+        }
+        .btnNV{cursor: pointer;}
+
+        #navCheckbox{display: none;}
+        input#navCheckbox:checked ~ #nav{
+            transform: translateX(0%);
+        }
+        
+        @media screen and (min-width:512px) {
+            #nav{width: 375px;}
+        }
+/*  */
+        .main-container{
+            padding: 20px 5px 5px 5px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-auto-rows: auto;
+            grid-gap: 12px;
+        }
+        li.card {
+            aspect-ratio: 1/1;
+            border: 1px solid #000;
+            transition: scale ease-in-out .3s;
+        }
+
+
+
+    </style>
 </head>
 <body>
     <header>
-        <div class="header-l">LOFO</div>
-        <div class="header-r">+</div>
+        <div class="header-container">
+                <a href="./index.html" class="header-l">
+                    <span>HEON</span>
+                </a>
+            <div class="header-r">
+                <label for="navCheckbox" class="btnNV btnNV1" >
+                    +
+                </label>    
+            </div>
+        </div>
+        <input type="checkbox" name="" id="navCheckbox">
+        <nav id="nav">
+            <label for="navCheckbox">
+                <span class="btnNV btnNV0" >
+                    X
+                </span>
+            </label>
+            <div class="navMain">
+                HIDE MENU
+            </div>
+        </nav>
     </header>
-    <nav>
-        HIDE MENU
-    </nav>
-
+        <main>
+        <ol class="main-container">
+            <li class="card">
+                <a href="">
+                    <div class="cardin1">이미지</div>
+                    <div class="cardin2">타이틀</div>
+                </a>
+            </li>
+        </ol>
+    </main>
 </body>
 </html>
