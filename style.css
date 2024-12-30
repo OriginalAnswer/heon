@@ -24,6 +24,7 @@ body{
     justify-content: center;
     background-color: #0e0e0e;
     position: relative;
+    overflow: hidden;
 }
 
 #Layer_1{
