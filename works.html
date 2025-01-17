@@ -11,7 +11,7 @@
         }
         body{
             color:#fff;
-            background-image: url(./bg_img.png);
+            /* background-image: url(./bg_img.png); */
             background-size: cover;
             place-content: center;
         }
@@ -21,7 +21,6 @@
             top: 0;
             left: 0;
             width: 100%;
-
             background-color: #00000041;
 
         }
@@ -29,8 +28,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 15px;
+            padding: 30px 25px;
             font-size: 1.5rem;
+            max-height: 100px;
         }
         /*  */
         
@@ -77,6 +77,77 @@
 
 
     </style>
+    <style>
+        html{
+            height: 100%;
+        }
+        body{
+            height: 100%;
+            display: flex;
+            align-items: start;
+            justify-content:flex-start;
+        }
+        main{
+            width: 100%;
+            height: 100%;
+            margin-top: 100px;
+        }
+        .item-container{
+            padding: 10px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            grid-auto-rows: auto;
+            grid-gap: 5px;
+            font-family: 'Pretendard-Regular', Helvetica,sans-serif ,serif;
+        }
+        /* ----------------- */
+        .witem{
+            --witem-bgc: #000000;
+            color: #fff;
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 25px;
+            border: 10px var(--witem-bgc) solid;
+            background-color: var(--witem-bgc);
+            backdrop-filter: blur(4px);
+        }
+        .witem-thumb{
+            width: 100%;
+            height: 100%;
+        }
+        .witem img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+            background-size: cover;
+            z-index: 0;
+            filter:saturate(0);
+        }
+        .witem-info{
+            position: absolute;
+            z-index: 1;
+            bottom: 0;left: 0;
+            width: 100%;
+        }
+        .witem-categories{
+            background-color: var(--witem-bgc);
+            padding: 10px 10px 5px 10px;
+            border-top-right-radius: 15px;
+            font-size: .8rem;
+        }
+        .witem-title{
+            padding: 10px 10px 5px 10px;
+            width: 100%;
+            /* font-weight: bold; */
+            background-color: var(--witem-bgc);
+            font-size: 1.3rem;
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -102,8 +173,8 @@
             </div>
         </nav>
     </header>
-        <main>
-        <ol class="main-container">
+    <main>
+        <ol class="item-container">
             <li class="card">
                 <a href="">
                     <div class="cardin1">이미지</div>
@@ -112,5 +183,7 @@
             </li>
         </ol>
     </main>
+<!-- JS -->
+<script src="./workTable.js"></script>
 </body>
 </html>
