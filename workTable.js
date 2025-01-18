@@ -54,12 +54,13 @@ const categories = [...new Set(itemDB.filter(item => item.onoff === "on").map(it
 // -------------------------------------
 // item-filter-option-container에 옵션 추가
 const optionContainer = document.querySelector('.item-filter-option-container');
+const itemFilter = document.querySelector('.item-filter');
 const itemFilterTop = document.querySelector('.item-filter-top');
 const itemFilterTopText = document.querySelector('.item-filter-top-text');
 
 // "ALL" 옵션 추가 후 나머지 옵션 추가
 optionContainer.innerHTML = `
-    <li class="item-filter-option">
+    <li class="item-filter-option" for="filterCheckbox">
         <span class="item-filter-checksvg">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11" stroke-width="1.5">
                 <path d="M 2.5 5.5 L 3.5 6.5 L 4.5 7.5 L 8.5 3.5" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -71,13 +72,9 @@ optionContainer.innerHTML = `
 // 필터 옵션 클릭 이벤트 핸들러
 optionContainer.addEventListener('click', event => {
     if (event.target.classList.contains('item-filter-option')) {
-        // 선택된 옵션의 텍스트 가져오기
         const selectedCategory = event.target.textContent.trim();
-
-        // .item-filter-top 텍스트 변경
         itemFilterTopText.textContent = selectedCategory;
 
-        // 모든 옵션에서 SVG 제거
         document.querySelectorAll('.item-filter-option svg').forEach(svg => svg.remove());
 
         // 선택된 옵션에 SVG 추가
@@ -96,6 +93,7 @@ optionContainer.addEventListener('click', event => {
 
         // 필터링된 항목 렌더링
         renderItems(filteredItems);
+        filterCheckbox.click();
     }
 });
 
@@ -130,10 +128,10 @@ renderItems(itemDB.filter(item => item.onoff === "on"));
 const filterCheckbox = document.querySelector('#filterCheckbox');
 
 // 문서 클릭 이벤트
-document.addEventListener('click', (event) => {
-    // 클릭한 요소가 체크박스나 옵션 컨테이너 내부가 아닌 경우
-    if (!event.target.closest('.item-filter-option-container') && !event.target.closest('#filterCheckbox')) {
-        // 체크박스를 해제하고 옵션 컨테이너를 숨김
-        filterCheckbox.checked = false;
-    }
-});
+// document.addEventListener('click', (event) => {
+//     // 클릭한 요소가 체크박스나 옵션 컨테이너 내부가 아닌 경우
+//     if (!event.target.closest('.item-filter-option-container') && !event.target.closest('#filterCheckbox')) {
+//         // 체크박스를 해제하고 옵션 컨테이너를 숨김
+//         filterCheckbox.checked = false;
+//     }
+// });
