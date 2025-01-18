@@ -7,10 +7,13 @@
 }
 
 :root{
-    --keycolor: #ffd900;
-    -moz-stack-sizing: #e0d42991;
-    --key-txt-color:#fff;
     --witem-bgc: #000000;
+    -moz-stack-sizing: #e0d42991;
+    --txtColor-home: #ffd900;
+    --txtColor-1:#fff;
+    --txtColor-2:#dddddd;
+    --txtColor-3:#bebebe;
+    --txtColor-4:#8d8d8d;
 }
 ::-webkit-scrollbar{
     display: none;
@@ -18,7 +21,7 @@
 *{
     text-rendering: optimizelegibility;
     box-sizing: border-box;
-    color: var(--key-txt-color);}
+    color: var(--txtColor-1);}
 /*  */
 html{
     width: 100vw;
@@ -75,12 +78,12 @@ video{
     padding: 13px 23px;
     background: #373d214f;
     border-radius: 70px;
-    border: 2px solid var(--keycolor);
+    border: 2px solid var(--txtColor-home);
     backdrop-filter: blur(4px);
     box-shadow: 0px 0px 20px var(--kcs) inset;
 
     text-transform: uppercase;
-    color: var(--keycolor);
+    color: var(--txtColor-home);
     transition: padding .25s ease-in-out;
     font-size: .9rem;
 
@@ -105,11 +108,13 @@ video{
     color: #ffd900;
     font-size: .9rem;
 }
-.btn{transition: padding .25s ease-in-out, box-shadow .25s ease-in-out;}
+.btn{
+    transition: padding .25s ease-in-out, box-shadow .25s ease-in-out;
+    box-shadow: 0px 0px 20px #e0d42991 inset;
+}
 .btn:hover{
     padding-left: 40px;
     padding-right: 40px;
-    box-shadow: 0px 0px 20px #e0d42991 inset;
 }
 /* ------------------ */
 
@@ -150,7 +155,7 @@ header{
     
     background-color: #00000041;
     backdrop-filter: blur(14px);
-    color: var(--key-txt-color);
+    color: var(--txtColor-1);
 
     visibility: hidden;
     opacity: 0;
