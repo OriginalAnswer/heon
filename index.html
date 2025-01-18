@@ -6,7 +6,7 @@
     <title>LEE JONGHEON</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        html{overflow: hidden;}
+        html,body{overflow: hidden;}
         .textbox{
             position: fixed;
             width: 100vw;
@@ -17,6 +17,16 @@
             height: 100%;
             object-fit:fill;
             opacity: .08;
+        }
+        @media screen and (max-width:375px) {
+            .textbox{
+                text-align: center;
+            }
+            .textbox img{
+                /* width: 30%; */
+                object-fit:contain;
+                opacity: .08;
+            }
         }
     </style>
 </head>
