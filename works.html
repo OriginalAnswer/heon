@@ -6,154 +6,225 @@
         <title>LEE JONGHEON</title>
         <link rel="stylesheet" href="style.css">
         <style>
-            a{
+            :root{
                 --key-txt-color:#fff;
+                --witem-bgc: #000000;
+
+            }
+            *{color: var(--key-txt-color);}
+            header{
+                z-index: 100;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: #000;
+                background-color: #0000009c;
+                backdrop-filter: blur(6px);
+                border-bottom: rgba(255, 255, 255, 0.1) solid 1px;
+                box-shadow: 0px 0px 20px #00000091;
+            }
+            .header-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 30px 25px;
+                font-size: 1.5rem;
+                max-height: 100px;
+            }
+            /*  */
+            
+            #nav{
+                width: 100vw;
+                height: 100vh;
+                position: absolute;
+                right: 0;
+                top: 0;
+                transform: translateX(100%);
+                z-index: 110;
+                
+                background: #000;
+                padding: 20px 15px;
+                
+                text-align: center;
+                transition: transform .2s ease-in-out;
+            }
+            .btnNV{cursor: pointer;}
+
+            #navCheckbox{display: none;}
+            input#navCheckbox:checked ~ #nav{
+                transform: translateX(0%);
+            }
+            
+            @media screen and (min-width:512px) {
+                #nav{width: 375px;}
+            }
+        /*  */  
+            .main-container{
+                padding: 20px 5px 5px 5px;
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                grid-auto-rows: auto;
+                grid-gap: 12px;
+            }
+            li.card {
+                aspect-ratio: 1/1;
+                border: 1px solid #000;
+                transition: scale ease-in-out .3s;
+            }
+        </style>
+        <style>
+            html{
+                height: 100%;
+            }
+            body{
+                height: 100%;
+                display: flex;
+                align-items: start;
+                justify-content:flex-start;
+            }
+            main{
+                width: 100%;
+                height: 100%;
+                margin-top: 80px;
+                padding: 20px;
+            }
+            .item-container{
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                            grid-auto-rows: auto;
+                grid-gap: .625rem;
+            }
+            @media (min-width: 640px) {
+                .item-container{
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+    }
+            /* ----------------- */
+            .witem{
+                position: relative;
+                width: 100%;
+                aspect-ratio: 1/1;
+                overflow: hidden;
+                border-radius: 35px;
+                border: 10px var(--witem-bgc) solid;
+                background-color: var(--witem-bgc);
+                backdrop-filter: blur(4px);
+            }
+            .witem-thumb{
+                width: 100%;
+                height: 100%;
+            }
+            .witem img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 25px;
+                background-size: cover;
+                z-index: 0;
+                filter:saturate(0);
+            }
+            .witem-info{
+                position: absolute;
+                z-index: 1;
+                bottom: 0;left: 0;
+                width: 100%;
+            }
+            .witem-categories{
+                background-color: var(--witem-bgc);
+                padding: 10px 10px 5px 10px;
+                border-top-right-radius: 15px;
+                font-size: .8rem;
+                color: #ffffffd0;
+            }
+            .witem-title{
+                padding: 10px 10px 5px 10px;
+                width: 100%;
+                /* font-weight: bold; */
+                background-color: var(--witem-bgc);
+                font-size: 1.3rem;
+            }
+
+            .witem:hover img{
+                filter: saturate(1);
+            }
+        </style>
+        <style>
+            .worksNavBar{
+                width: 100%;
+                height: 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 5px;
+                margin: 20px 0;
                 color: var(--key-txt-color);
             }
-            header{
-            z-index: 100;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #000;
-            background-color: #0000009c;
-            backdrop-filter: blur(6px);
-            box-shadow: 0px 0px 20px #00000091;
-        }
-        .header-container{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 30px 25px;
-            font-size: 1.5rem;
-            max-height: 100px;
-        }
-        /*  */
-        
-        #nav{
-            width: 100vw;
-            height: 100vh;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transform: translateX(100%);
-            z-index: 110;
-            
-            background: #000;
-            padding: 20px 15px;
-            
-            text-align: center;
-            transition: transform .2s ease-in-out;
-        }
-        .btnNV{cursor: pointer;}
+            .item-filter{
+                user-select: none;
+                position: relative;
+                height: 34px;
+                padding: 10px 12px;
+                
+                font-size: 14px;
+                font-weight: 580;
+                line-height: 1;
+                background: hsla(0, 0%, 100%, .1);
+                border: none;
+                border-radius: 8px;
+                transition: background-color;
+                transition-duration: .3s;
+            }
+            .item-filter-top{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                justify-content: center;
+                
+            }
+            .item-filter:hover{background: hsla(0, 0%, 100%, .15);}
+            .item-filter-arrow{
+                display: block;
+                transform: rotate(90deg) scaleY(1.2) scaleX(.8);
+                opacity: 50%;
+                font-weight: 100;
+            }
+            .item-filter-option-container{
+                display: none;
+                z-index: 100;
+                position: absolute;
+                bottom: 0;left: 0;
+                transform: translateY(calc(100% + 10px));
+                min-width: max-content;
+                
+                border-radius: 10px;
+                border: rgba(255, 255, 255, 0.1) solid 1px;
+                box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .3);
 
-        #navCheckbox{display: none;}
-        input#navCheckbox:checked ~ #nav{
-            transform: translateX(0%);
-        }
-        
-        @media screen and (min-width:512px) {
-            #nav{width: 375px;}
-        }
-/*  */
-        .main-container{
-            padding: 20px 5px 5px 5px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-auto-rows: auto;
-            grid-gap: 12px;
-        }
-        li.card {
-            aspect-ratio: 1/1;
-            border: 1px solid #000;
-            transition: scale ease-in-out .3s;
-        }
-
-
-
-    </style>
-    <style>
-        html{
-            height: 100%;
-        }
-        body{
-            height: 100%;
-            display: flex;
-            align-items: start;
-            justify-content:flex-start;
-            color: var(--key-txt-color);
-        }
-        main{
-            width: 100%;
-            height: 100%;
-            margin-top: 110px;
-        }
-        .item-container{
-            padding: 10px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-                        grid-auto-rows: auto;
-            grid-gap: .625rem;
-        }
-        @media (min-width: 640px) {
-            .item-container{
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-}
-        /* ----------------- */
-        .witem{
-            --witem-bgc: #000000;
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            border-radius: 35px;
-            border: 10px var(--witem-bgc) solid;
-            background-color: var(--witem-bgc);
-            backdrop-filter: blur(4px);
-        }
-        .witem-thumb{
-            width: 100%;
-            height: 100%;
-        }
-        .witem img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 25px;
-            background-size: cover;
-            z-index: 0;
-            filter:saturate(0);
-        }
-        .witem-info{
-            position: absolute;
-            z-index: 1;
-            bottom: 0;left: 0;
-            width: 100%;
-        }
-        .witem-categories{
-            background-color: var(--witem-bgc);
-            padding: 10px 10px 5px 10px;
-            border-top-right-radius: 15px;
-            font-size: .8rem;
-            color: #ffffffd0;
-        }
-        .witem-title{
-            padding: 10px 10px 5px 10px;
-            width: 100%;
-            /* font-weight: bold; */
-            background-color: var(--witem-bgc);
-            font-size: 1.3rem;
-        }
-
-        .witem:hover img{
-            filter: saturate(1);
-        }
-
-    </style>
+                background-color: #00000096;
+                backdrop-filter: blur(50px);
+            }
+            .item-filter-option-container.show {display: block;}
+            .item-filter-option{
+                padding: 12px 16px 12px 26px;
+                position: relative;
+            }
+            .item-filter-option:hover{
+                background-color: hsla(0, 0%, 100%, .15);
+            }
+            .item-filter-checksvg{
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1rem;
+                height: 100%;
+                left: 5px;
+                top: 0;
+            }
+        </style>
 </head>
 <body>
     <header>
@@ -175,11 +246,31 @@
                 </span>
             </label>
             <div class="navMain">
-                HIDE MENU
+                <a href="./index.html">HOME</a>
+                <a href="./works.css">WORK</a>
+                <a href="./contact.html">CONTACT</a>
             </div>
         </nav>
     </header>
     <main>
+        <div class="worksNavBar">
+            <div class="worksNavBar-l">
+                <div class="item-filter">
+                    <div class="item-filter-top">
+                        <span class="item-filter-top-text">ALL</span>
+                        <div class="item-filter-arrow">></div>
+                    </div>
+                    <ol class="item-filter-option-container">
+                        <li class="item-filter-option">A</li>
+                        <li class="item-filter-option">B</li>
+                        <li class="item-filter-option">C</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="worksNavBar-r">
+                <span>20 results</span>
+            </div>
+        </div>
         <ol class="item-container">
             <li class="card">
                 <a href="">

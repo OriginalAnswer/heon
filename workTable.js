@@ -46,17 +46,80 @@ function displayItems() {
 //최초 프린팅
 displayItems();
 // -------------------------------------
+
+
+
 // 고유한 카테고리 종류 추출
 const categories = [...new Set(itemDB.filter(item => item.onoff === "on").map(item => item.categories))];
 // -------------------------------------
-const filterDropdown = document.querySelector('.filter-dropdown');
-filterDropdown.innerHTML = `<option value="all">All</option>` + 
-    categories.map(category => `<option value="${category}">${category}</option>`).join('');
+// item-filter-option-container에 옵션 추가
+const optionContainer = document.querySelector('.item-filter-option-container');
+const itemFilterTop = document.querySelector('.item-filter-top');
+const itemFilterTopText = document.querySelector('.item-filter-top-text');
 
-filterDropdown.addEventListener('change', event => {
-    const selectedCategory = event.target.value;
-    const filteredItems = selectedCategory === 'all' 
-        ? onItems 
-        : onItems.filter(item => item.categories === selectedCategory);
-    renderItems(filteredItems);
+// "ALL" 옵션 추가 후 나머지 옵션 추가
+optionContainer.innerHTML = `
+    <li class="item-filter-option">
+        <span class="item-filter-checksvg">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11" stroke-width="1.5">
+                <path d="M 2.5 5.5 L 3.5 6.5 L 4.5 7.5 L 8.5 3.5" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </span>
+        ALL
+    </li>` + 
+    categories.map(category => `<li class="item-filter-option">${category}</li>`).join('');
+
+// 필터 옵션 클릭 이벤트 핸들러
+optionContainer.addEventListener('click', event => {
+    if (event.target.classList.contains('item-filter-option')) {
+        // 선택된 옵션의 텍스트 가져오기
+        const selectedCategory = event.target.textContent.trim();
+
+        // .item-filter-top 텍스트 변경
+        itemFilterTopText.textContent = selectedCategory;
+
+        // 모든 옵션에서 SVG 제거
+        document.querySelectorAll('.item-filter-option svg').forEach(svg => svg.remove());
+
+        // 선택된 옵션에 SVG 추가
+        event.target.innerHTML = `
+            <span class="item-filter-checksvg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11" stroke-width="1.5">
+                    <path d="M 2.5 5.5 L 3.5 6.5 L 4.5 7.5 L 8.5 3.5" fill="transparent" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </span>
+            ${selectedCategory}`;
+        
+        // "ALL"이 선택되면 모든 항목을 렌더링
+        const filteredItems = selectedCategory === 'ALL'
+            ? itemDB.filter(item => item.onoff === "on")
+            : itemDB.filter(item => item.onoff === "on" && item.categories === selectedCategory);
+
+        // 필터링된 항목 렌더링
+        renderItems(filteredItems);
+    }
+});
+
+// 아이템 렌더링 함수
+function renderItems(items) {
+    const itemsHTML = items.map(item => `
+        <a href="../page/${item.num}.html" class="witem">
+            <div class="witem-thumb">
+                <img src="${item.img}" alt="product thumbnail" class="witem-img">
+            </div>
+            <div class="witem-info">
+                <span class="witem-categories">${item.categories}</span>
+                <div class="witem-title">${item.title}</div>
+            </div>
+        </a>
+    `).join('');
+    itemContainer.innerHTML = itemsHTML;
+}
+
+// 초기 렌더링
+renderItems(itemDB.filter(item => item.onoff === "on"));
+
+// .item-filter-top 클릭 시 옵션 보이기/숨기기
+itemFilterTop.addEventListener('click', (event) => {
+    optionContainer.classList.toggle('show'); // 옵션 표시/숨기기
 });
