@@ -6,71 +6,6 @@
         <title>LEE JONGHEON</title>
         <link rel="stylesheet" href="style.css">
         <style>
-            :root{
-                --key-txt-color:#fff;
-                --witem-bgc: #000000;
-            }
-            *{color: var(--key-txt-color);}
-            header{
-                z-index: 100;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background-color: #000;
-                background-color: #0000009c;
-                backdrop-filter: blur(6px);
-                border-bottom: rgba(255, 255, 255, 0.1) solid 1px;
-                box-shadow: 0px 0px 20px #00000091;
-            }
-            .header-container{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 30px 25px;
-                font-size: 1.5rem;
-                max-height: 100px;
-            }
-            /*  */
-            #navToggle{
-                z-index: 1;
-                cursor: pointer; 
-                transition: transform 0.3s ease; /* 부드러운 전환 효과 */
-            }
-            .nav{
-                z-index: -1;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                padding: 20px 15px;
-                
-                background-color: #00000041;
-                backdrop-filter: blur(14px);
-                color: var(--key-txt-color);
-
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity .5s ease;
-            }
-            .navMain{
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 20px;
-            }
-            /* 체크박스가 체크된 상태 */
-            .header-r{transition: transform 0.5s ease;}
-            input#navCheckbox:checked ~ .header-r {
-                transform: rotateZ(-45deg);
-            }
-            
-        </style>
-        <style>
             html{
                 height: 100%;
             }
@@ -93,11 +28,6 @@
                 grid-auto-rows: auto;
                 grid-gap: .625rem;
             }
-            @media (min-width: 640px) {
-                .item-container{
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        }
-    }
             /* ----------------- */
             .witem{
                 position: relative;
@@ -136,15 +66,24 @@
                 color: #ffffffd0;
             }
             .witem-title{
-                padding: 10px 10px 5px 10px;
+                padding: 15px 10px 10px 10px;
                 width: 100%;
-                /* font-weight: bold; */
                 background-color: var(--witem-bgc);
                 font-size: 1.3rem;
             }
 
             .witem:hover img{
                 filter: saturate(1);
+            }
+/* --------------------------------------------------- */
+            @media (min-width: 640px) {
+                .item-container{grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));}
+            }
+            @media (max-width: 425px) {
+                main{padding: 0 5px;}
+                .item-container{grid-gap: 5px;}
+                .witem{border-radius: 20px;}
+                .witem img{border-radius: 15px;}
             }
         </style>
         <style>
@@ -179,6 +118,7 @@
                 gap: 10px;
                 align-items: center;
                 justify-content: center;
+                font-weight: bold;
                 
             }
             .item-filter-arrow{
@@ -187,6 +127,8 @@
                 opacity: 50%;
                 font-weight: 100;
             }
+            .worksNavBar-l{position: relative;}
+
             #filterCheckbox{display: none;}
             input#filterCheckbox:checked ~ .item-filter .item-filter-option-container{
                 display: block;
@@ -260,9 +202,6 @@
                         <div class="item-filter-arrow">></div>
                     </label>
                     <ol class="item-filter-option-container">
-                        <li class="item-filter-option">A</li>
-                        <li class="item-filter-option">B</li>
-                        <li class="item-filter-option">C</li>
                     </ol>
                 </div>
             </div>
