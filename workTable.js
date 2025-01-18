@@ -12,7 +12,7 @@ const itemDB = [
     {num : "11", onoff:"on",categories : "Short Film", title : "Keeper", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/e1e6f1d7-d096-415c-ac91-887e569b12c2_car_202x158.jpg?h=1d922b52020013ec581cd94c54ece63b"},
     {num : "12", onoff:"on",categories : "Short Film", title : "ECA", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/b673d75d-1f30-4b5f-a869-2e087ef47aaa_car_202x158.jpg?h=e9433b5011108fa6944f4e50aed5d600"},
     {num : "13", onoff:"on",categories : "Commercial", title : "Breakable", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/68b5d3b5-c645-402f-bffb-50ec57d801cb_rwc_473x0x1097x858x1097.jpg?h=1fe7a6a797d5ccd57146e6bd2db94732"},
-    {num : "14", onoff:"on",categories : "Documentary Film", title : "Blue Mind", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/4afc94f5-37da-438b-bb0c-688d56f5b26f_car_202x158.jpg?h=e6405cb7caf61761ca0eb5f8c5dfd380"},
+    {num : "14", onoff:"on",categories : "Documentary", title : "Blue Mind", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/4afc94f5-37da-438b-bb0c-688d56f5b26f_car_202x158.jpg?h=e6405cb7caf61761ca0eb5f8c5dfd380"},
     {num : "15", onoff:"on",categories : "Commercial", title : "Too Soft", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/13091e97-1692-4a30-9280-b15d9bdea661_car_202x158.jpg?h=54bb11c982239ceb1a5e2d6b0cf7e56a"},
     {num : "16", onoff:"on",categories : "Short Film Animation", title : "Ascent", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/7f8dd7f1-dacf-4fd6-b103-36b7e7a640fa_car_202x158.jpg?h=4db1bf92faeb631c612c33df504f669f"},
     {num : "17", onoff:"on",categories : "Short Film", title : "Nome and Worm", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/e1fcd0df-7fba-42b2-92fe-74946f49ad4b_car_202x158.jpg?h=8abaa567464170f390d2dc08dbc07bc6"},
@@ -66,8 +66,7 @@ optionContainer.innerHTML = `
             </svg>
         </span>
         ALL
-    </li>` + 
-    categories.map(category => `<li class="item-filter-option">${category}</li>`).join('');
+    </li>` +  categories.map(category => `<li class="item-filter-option">${category}</li>`).join('');
 
 // 필터 옵션 클릭 이벤트 핸들러
 optionContainer.addEventListener('click', event => {
@@ -100,6 +99,12 @@ optionContainer.addEventListener('click', event => {
     }
 });
 
+// 필터링된 아이템 수를 업데이트하는 함수
+function updateItemCount(count) {
+    const resultsSpan = document.querySelector('.worksNavBar-r span');
+    resultsSpan.textContent = `${count} results`;
+}
+
 // 아이템 렌더링 함수
 function renderItems(items) {
     const itemsHTML = items.map(item => `
@@ -114,12 +119,21 @@ function renderItems(items) {
         </a>
     `).join('');
     itemContainer.innerHTML = itemsHTML;
+
+    // 필터된 아이템 개수 업데이트
+    updateItemCount(items.length);
 }
 
 // 초기 렌더링
 renderItems(itemDB.filter(item => item.onoff === "on"));
+//
+const filterCheckbox = document.querySelector('#filterCheckbox');
 
-// .item-filter-top 클릭 시 옵션 보이기/숨기기
-itemFilterTop.addEventListener('click', (event) => {
-    optionContainer.classList.toggle('show'); // 옵션 표시/숨기기
+// 문서 클릭 이벤트
+document.addEventListener('click', (event) => {
+    // 클릭한 요소가 체크박스나 옵션 컨테이너 내부가 아닌 경우
+    if (!event.target.closest('.item-filter-option-container') && !event.target.closest('#filterCheckbox')) {
+        // 체크박스를 해제하고 옵션 컨테이너를 숨김
+        filterCheckbox.checked = false;
+    }
 });

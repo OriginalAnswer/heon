@@ -55,7 +55,7 @@
             input#navCheckbox:checked ~ #nav{
                 transform: translateX(0%);
             }
-            
+
             @media screen and (min-width:512px) {
                 #nav{width: 375px;}
             }
@@ -177,6 +177,7 @@
                 transition: background-color;
                 transition-duration: .3s;
             }
+            .item-filter:hover{background: hsla(0, 0%, 100%, .15);}
             .item-filter-top{
                 display: flex;
                 gap: 10px;
@@ -184,12 +185,15 @@
                 justify-content: center;
                 
             }
-            .item-filter:hover{background: hsla(0, 0%, 100%, .15);}
             .item-filter-arrow{
                 display: block;
                 transform: rotate(90deg) scaleY(1.2) scaleX(.8);
                 opacity: 50%;
                 font-weight: 100;
+            }
+            #filterCheckbox{display: none;}
+            input#filterCheckbox:checked ~ .item-filter-option-container{
+                display: block;
             }
             .item-filter-option-container{
                 display: none;
@@ -206,7 +210,6 @@
                 background-color: #00000096;
                 backdrop-filter: blur(50px);
             }
-            .item-filter-option-container.show {display: block;}
             .item-filter-option{
                 padding: 12px 16px 12px 26px;
                 position: relative;
@@ -256,10 +259,11 @@
         <div class="worksNavBar">
             <div class="worksNavBar-l">
                 <div class="item-filter">
-                    <div class="item-filter-top">
+                    <input type="checkbox" name="" id="filterCheckbox">
+                    <label class="item-filter-top" for="filterCheckbox">
                         <span class="item-filter-top-text">ALL</span>
                         <div class="item-filter-arrow">></div>
-                    </div>
+                    </label>
                     <ol class="item-filter-option-container">
                         <li class="item-filter-option">A</li>
                         <li class="item-filter-option">B</li>
