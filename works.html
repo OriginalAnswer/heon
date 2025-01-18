@@ -38,7 +38,7 @@
                 transition: transform 0.3s ease; /* 부드러운 전환 효과 */
             }
             .nav{
-                z-index: 1;
+                z-index: -1;
                 position: fixed;
                 top: 0;
                 left: 0;
@@ -47,10 +47,12 @@
                 padding: 20px 15px;
                 
                 background-color: #00000041;
-                backdrop-filter: blur(8px);
+                backdrop-filter: blur(14px);
                 color: var(--key-txt-color);
 
-                transition: opacity 0.3s ease; /* 부드러운 페이드 효과 */
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity .5s ease;
             }
             .navMain{
                 width: 100%;
@@ -228,10 +230,10 @@
         </style>
 </head>
 <body>
-    <nav class="nav dpnone">
+    <nav class="nav">
         <div class="navMain">
             <a href="./index.html">HOME</a>
-            <a href="./works.css">WORK</a>
+            <a href="./works.html">WORK</a>
             <a href="./contact.html">CONTACT</a>
         </div>
     </nav>
@@ -282,9 +284,17 @@
     // 체크박스 상태에 따라 .dpnone 클래스 토글
     navCheckbox.addEventListener('change', () => {
         if (navCheckbox.checked) {
-            nav.classList.remove('dpnone'); // 체크된 상태면 .dpnone 제거
+            nav.style.zIndex = '1';
+            nav.style.visibility = 'visible';
+            nav.style.opacity = '1';
         } else {
-            nav.classList.add('dpnone'); // 체크 해제 시 .dpnone 추가
+            nav.style.opacity = '0'; 
+            nav.addEventListener('transitionend', () => {
+                if (!navCheckbox.checked) {
+                    nav.style.zIndex = '-1'; 
+                    nav.style.visibility = 'hidden';
+                }
+            }, { once: true });
         }
     });
 </script>
