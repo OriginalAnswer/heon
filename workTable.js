@@ -6,7 +6,7 @@ const onItems = itemDB.filter(item => item.onoff === "on");
 // -------------------------------------
 function displayItems() {
     const itemsHTML = onItems.map(item => `
-        <a href="./page/${item.num}.html" class="witem">
+        <a href="/page/${item.num}.html" class="witem">
             <div class="witem-thumb">
                 <img src="${item.img}" alt="product thumbnail" class="witem-img">
             </div>
