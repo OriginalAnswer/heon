@@ -63,7 +63,7 @@ function updateItemCount(count) {
 // 아이템 렌더링
 function renderItems(items) {
     const itemsHTML = items.map(item => `
-        <a href="/page/${item.num}.html" class="witem">
+        <a href="heon/page/${item.num}.html" class="witem">
             <div class="witem-thumb">
                 <img src="${item.img}" alt="product thumbnail" class="witem-img">
             </div>
