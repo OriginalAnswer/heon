@@ -43,9 +43,6 @@
         </section>
         <section class="sc-slider sc">
             <div class="img-container" id="imgContainer">
-                <img src="https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/fd956ade-1172-4737-b038-6e6e7fe9c898_carw_202x158x640.png?h=eb0780a66297ad6e9c6073316396cb2c" alt="">
-                <img src="https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/36816b8f-b1c3-45d2-b953-e91b9e2f0b50_carw_202x158x640.png?h=e7491ef09cb7f6681d4c0e7c117665e8" alt="">
-                <img src="https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/24ac2ed4-8c4f-45f2-a948-4cedca36cf84_carw_202x158x640.png?h=" alt="">
             </div>
             <div class="btn-move btn-move-prev">&#10094;</div>
             <div class="btn-move btn-move-next">&#10095;</div>
@@ -54,7 +51,6 @@
             <div class="pagination"></div>
         </section>
         <section class="sc-images sc"></section>
-
     </main>
 <!-- JS -->
 <script src="../navToggle.js"></script>
@@ -62,62 +58,17 @@
     const slideDB = [
         {num:"1", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/fd956ade-1172-4737-b038-6e6e7fe9c898_carw_202x158x640.png?h=eb0780a66297ad6e9c6073316396cb2c"},
         {num:"2", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/36816b8f-b1c3-45d2-b953-e91b9e2f0b50_carw_202x158x640.png?h=e7491ef09cb7f6681d4c0e7c117665e8"},
-        {num:"2", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/24ac2ed4-8c4f-45f2-a948-4cedca36cf84_carw_202x158x640.png?h=632f30354b342fada1415146cf12deae"}
+        {num:"3", img : "https://cdn.myportfolio.com/39336d17-63cf-4d54-8cc4-5e93f4ae1698/24ac2ed4-8c4f-45f2-a948-4cedca36cf84_carw_202x158x640.png?h=632f30354b342fada1415146cf12deae"}
     ]
-    document.addEventListener('DOMContentLoaded', function() {
-    const sliders = document.querySelectorAll('.slider-container');
-   
-    sliders.forEach(slider => {
-        const sliderWrapper = slider.querySelector('.slider-wrapper');
-        const slides = slider.querySelectorAll('.slide');
-        const prevButton = slider.querySelector('.prev');
-        const nextButton = slider.querySelector('.next');
-        const pagination = slider.querySelector('.pagination');
-   
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-   
-        // 페이지네이션 도트 생성
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            pagination.appendChild(dot);
-        }
-   
-        const dots = slider.querySelectorAll('.dot');
-   
-        function updateSlider() {
-            sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active-dot', index === currentIndex);
-            });
-        }
-   
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateSlider();
-        }
-   
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
-   
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-   
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                updateSlider();
-            });
-        });
-   
-        // 자동 슬라이드 (옵션)
-        setInterval(nextSlide, 6000);
-    });
-   });
+
+    const imgContainer = document.querySelector('#imgContainer');
+    function setslideImg() {
+    const slideImgHTML = onItems.map(item => `
+        <img src="${slideDB.img}">
+        `).join('');
+        
+        imgContainer.innerHTML = itemsHTML;
+}
 </script>
 </body>
 </html>
