@@ -33,14 +33,15 @@ main{
     transform: scaleY(1.2) scaleX(.8);
 }
 /* --------------------------------- */
-.sc{width: 100%;}
+.sc{
+    text-align: center;
+    display: block;
+    width: 100%;
+}
 
 .sc-first{
     margin: 40px 0;
-    text-align: center;
 }
-/* --------------------------------- */
-
 /* --------------------------------- */
 .sc-slider{
     width: 90%;
@@ -113,4 +114,15 @@ main{
 }
 .slideDots .active{
     background: var(--txtColor-1);
+}
+
+/* --------------------------------- */
+.sc-images{
+    margin-top: 100px;
+    gap: 50px;
+}
+.sc-images img{
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 10px;
 }
