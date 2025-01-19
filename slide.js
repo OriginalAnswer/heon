@@ -1,6 +1,17 @@
 const imgContainer = document.querySelector('#imgContainer');
 const slideDots = document.querySelector('.slideDots');
+// 이미지 클릭 이벤트 -----------------------------------------------
+function addImageClickEvent() {
+    const images = document.querySelectorAll('.sc-images img'); // 모든 이미지 선택
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            const imgSrc = image.getAttribute('src'); // 클릭된 이미지의 src 가져오기
+            window.open(imgSrc, '_blank'); // 새 창에서 이미지 열기
+        });
+    });
+}
 
+// 이미지 초기 세팅 프린트 -----------------------------------------------
 function setslideImg() {
     const slideImgHTML = slideDB.map(item => `
             <img src="${item.img}">
@@ -11,6 +22,7 @@ function setslideImg() {
         <div class="dot" data-num="${item.num}"></div>
     `).join('');
     slideDots.innerHTML = dotsHTML;
+    addImageClickEvent(); 
 }
 setslideImg();
 // 슬라이더 컨트롤 -----------------------------------------------

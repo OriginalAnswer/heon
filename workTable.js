@@ -104,12 +104,3 @@ function renderItems(items) {
 renderItems(itemDB.filter(item => item.onoff === "on"));
 //
 const filterCheckbox = document.querySelector('#filterCheckbox');
-
-// 문서 클릭 이벤트
-// document.addEventListener('click', (event) => {
-//     // 클릭한 요소가 체크박스나 옵션 컨테이너 내부가 아닌 경우
-//     if (!event.target.closest('.item-filter-option-container') && !event.target.closest('#filterCheckbox')) {
-//         // 체크박스를 해제하고 옵션 컨테이너를 숨김
-//         filterCheckbox.checked = false;
-//     }
-// });
