@@ -60,7 +60,8 @@ main{
 }
 .img-container img {
     flex: 0 0 100%;
-    object-fit: cover;
+    object-fit: contain;
+    aspect-ratio: 16/9;
 }
 .ctrl-container {
     position: absolute;
@@ -118,13 +119,25 @@ main{
 
 /* --------------------------------- */
 .sc-images{
-    margin-top: 100px;
+    /* margin-top: 100px; */
     gap: 50px;
+    padding: 100px 0;
 }
 .sc-images img{
     width: 100%;
     max-width: 1300px;
     margin-bottom: 10px;
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+
+
+/* --------------------------------- */
+@media (max-width: 500px) {
+    main{
+        padding: 0 10px;
+    }
+    .sc-slider{
+        width: 100%;
+    }
 }
