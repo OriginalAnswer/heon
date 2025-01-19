@@ -75,7 +75,7 @@ main{
     align-items: center;
 }
 .btn-move{
-    background: rgba(255, 0, 0, 0.3);
+    /* background: rgba(255, 0, 0, 0.3); */
     padding: 10px;
     width: 30%;
     height: 100%;
@@ -88,6 +88,7 @@ main{
 .btn-move-c {
     width: 39%;
     cursor: zoom-in;
+    display: none;
 }
 .btn-move-next {
     justify-content: flex-end;
