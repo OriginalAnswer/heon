@@ -4,27 +4,6 @@ const itemContainer = document.querySelector('.item-container');
 // "on" 상태인 항목만 필터링
 const onItems = itemDB.filter(item => item.onoff === "on");
 // -------------------------------------
-function displayItems() {
-    const itemsHTML = onItems.map(item => `
-        <a href="/page/${item.num}.html" class="witem">
-            <div class="witem-thumb">
-                <img src="${item.img}" alt="product thumbnail" class="witem-img">
-            </div>
-            <div class="witem-info">
-                <span class="witem-categories">${item.categories}</span>
-                <div class="witem-title">${item.title}</div>
-            </div>
-        </a>
-        `).join('');
-        
-        itemContainer.innerHTML = itemsHTML;
-}
-    
-// -------------------------------------
-//최초 프린팅
-displayItems();
-// -------------------------------------
-
 
 
 // 고유한 카테고리 종류 추출
@@ -75,16 +54,16 @@ optionContainer.addEventListener('click', event => {
     }
 });
 
-// 필터링된 아이템 수를 업데이트하는 함수
+// 필터링된 아이템 수를 업데이트
 function updateItemCount(count) {
     const resultsSpan = document.querySelector('.worksNavBar-r span');
     resultsSpan.textContent = `${count} results`;
 }
 
-// 아이템 렌더링 함수
+// 아이템 렌더링
 function renderItems(items) {
     const itemsHTML = items.map(item => `
-        <a href="../page/${item.num}.html" class="witem">
+        <a href="/page/${item.num}.html" class="witem">
             <div class="witem-thumb">
                 <img src="${item.img}" alt="product thumbnail" class="witem-img">
             </div>
