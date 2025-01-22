@@ -51,9 +51,7 @@ body{
     z-index: 100;
     object-fit: contain;
 }
-video{
-    filter: blur(10px);
-}
+
 .btn-home-vd-container{
     z-index: 101;
     position: absolute;
